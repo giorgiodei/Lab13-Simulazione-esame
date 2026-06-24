@@ -30,8 +30,11 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         #ROW with some controls
-        self.ddyear = ft.Dropdown(label="Anno")
+        self.ddyear = ft.Dropdown(label="Anno", on_change=self._controller.handle_year_selected)
         self.ddshape = ft.Dropdown(label="Shape")
+        self._controller.fillDDYears(self.ddyear)
+        self._controller.fillDDShape(self.ddshape)
+
 
 
         # button for the "creat graph" reply
@@ -40,7 +43,6 @@ class View(ft.UserControl):
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
-        self._controller.fillDD()
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
